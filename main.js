@@ -61,6 +61,7 @@ async function genImage() {
     await downloadFile('https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2Ffont8.png?1557159680515',"font.png");
     await downloadFile('https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2Ffont9.fnt?1557160155041',"font2.fnt");
     await downloadFile('https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2Ffont9.png?1557160155422',"font9.png");
+    await downloadFile("https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2FImageBackground.png?1557082521195","ImageBackground.png")
     let data = JSON.parse(fs.readFileSync(publicFolder+"\\News.json"))
     let news = data.news.messages
     let left = news[0]
