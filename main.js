@@ -136,7 +136,7 @@ async function downloadFile (url,name){
   }
 
 async function writeNewsToFile(news) {
-  fs.writeFileSync(publicFolder+"\\News.json","LOL")
+  
     try {
         if(fs.readFileSync(publicFolder+"\\News.json") != news) {
           fs.writeFile(publicFolder+"\\News.json",news,function(err) {
@@ -149,5 +149,5 @@ async function writeNewsToFile(news) {
        throw e 
     }
   }
-
+fs.writeFileSync(publicFolder+"\\News.json","LOL")
 setInterval(getNews,1000)
