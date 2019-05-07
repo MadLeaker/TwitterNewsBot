@@ -142,6 +142,7 @@ async function writeNewsToFile(news) {
           fs.writeFile(publicFolder+"\\News.json",news,function(err) {
               if(err) throw err;
               console.log("The writing has been completed!");
+              genImage();
           })
         }
     }
