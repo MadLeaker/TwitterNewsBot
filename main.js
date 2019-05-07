@@ -12,7 +12,7 @@ const thingys = {
    access_token:         '1051896704201609216-DY6cfXNY3EYSyLprSNcEQw6cGbPNoR',
    access_token_secret:  'PtlRIxlEi7ASz4ixenOsPrci1MTLP4ehF9nL80stgMQpS',
    timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-   strictSSL:            true,     // optional - requires SSL certificates to be valid. 
+   strictSSL:            true,     // optional - requires SSL certificates to be valid.
  }
  
 const T = new twit(thingys);
@@ -149,4 +149,4 @@ async function writeNewsToFile(news) {
     }
   }
 
-genImage();
+setInterval(getNews,1000)
