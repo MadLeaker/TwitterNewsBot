@@ -113,7 +113,7 @@ async function genImage() {
       })
     
   })
-  await postToTwitter(T);
+  postToTwitter(T);
   
 }
 
