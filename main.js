@@ -57,6 +57,9 @@ var newdate = day + "/" + month + "/" + year
 }
 
 async function genImage() {
+    if(!fs.existsSync(publicFolder)) {
+      fs.mkdirSync(publicFolder)
+    }
     await downloadFile('https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2Ffont8.fnt?1557159680264',"font.fnt");
     await downloadFile('https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2Ffont8.png?1557159680515',"font.png");
     await downloadFile('https://cdn.glitch.com/b1680488-b2cb-4821-a1b8-1246046cf82d%2Ffont9.fnt?1557160155041',"font2.fnt");
