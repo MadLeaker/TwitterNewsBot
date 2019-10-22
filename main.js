@@ -7,10 +7,10 @@ const twit = require("twit")
 const publicFolder = path.resolve(__dirname,"Files");
 
 const thingys = {
-    consumer_key:         'hWzONCTBo0zt2E9gAeRd3mlvn',
-   consumer_secret:      '1ff7p4ydeS5EW9RBMclVuFnwuCUHnZRUu2MzUnvmuEASpnFVDE',
-   access_token:         '1051896704201609216-DY6cfXNY3EYSyLprSNcEQw6cGbPNoR',
-   access_token_secret:  'PtlRIxlEi7ASz4ixenOsPrci1MTLP4ehF9nL80stgMQpS',
+    consumer_key:         'CONSUMER_KEY',
+   consumer_secret:      'CONSUMER SECRET',
+   access_token:         'ACCESS_TOKEN',
+   access_token_secret:  'ACCESS_TOKEN_SECRET',
    timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
    strictSSL:            true,     // optional - requires SSL certificates to be valid.
  }
