@@ -3,18 +3,22 @@ const jimp = require('jimp');
 const path = require("path");
 const axios = require('axios');
 const twit = require("twit")
+const api_key = process.env.CONSUMER_KEY;
+require('dotenv').config();
 
 const publicFolder = path.resolve(__dirname,"Files");
 
 const thingys = {
-    consumer_key:         'hWzONCTBo0zt2E9gAeRd3mlvn',
-   consumer_secret:      '1ff7p4ydeS5EW9RBMclVuFnwuCUHnZRUu2MzUnvmuEASpnFVDE',
-   access_token:         '1051896704201609216-DY6cfXNY3EYSyLprSNcEQw6cGbPNoR',
-   access_token_secret:  'PtlRIxlEi7ASz4ixenOsPrci1MTLP4ehF9nL80stgMQpS',
+    consumer_key:         'CONSUMER_KEY',
+   consumer_secret:      'CONSUMER SECRET',
+   access_token:         'ACCESS_TOKEN',
+   access_token_secret:  'ACCESS_TOKEN_SECRET',
    timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
    strictSSL:            true,     // optional - requires SSL certificates to be valid.
  }
- 
+console.log(process.env);
+
+
 const T = new twit(thingys);
 async function getNews() {
     const news = await axios({
@@ -23,7 +27,7 @@ async function getNews() {
     })
     let brNews = news.data.battleroyalenews
     await writeNewsToFile(JSON.stringify(brNews))
-    
+
 
 }
 
@@ -36,7 +40,7 @@ async function postToTwitter(twitter) {
   var mediaIdStr = data.media_id_string
   var altText = "News Image"
   var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
- 
+
   twitter.post('media/metadata/create', meta_params, function (err, data, response) {
     if (!err) {
       // now we can reference the media and post a tweet (media will attach to the tweet)
@@ -47,7 +51,7 @@ var year = dateObj.getUTCFullYear();
 
 var newdate = day + "/" + month + "/" + year
       var params = { status: 'Fortnite News '+newdate + '#FortniteSeason9 #Fortnite @FNBRBananik', media_ids: [mediaIdStr] }
- 
+
       twitter.post('statuses/update', params, function (err, data, response) {
         console.log(data)
       })
@@ -87,7 +91,7 @@ async function genImage() {
           leftImg.resize(600,337.5);
         jimp.read(midFile,(err,midImg) => {
           if(err) throw err;
-           midImg.resize(600,337.5); 
+           midImg.resize(600,337.5);
           jimp.read(rightFile,(err,rightImg) => {
             if(err) throw err;
              rightImg.resize(600,337.5);
@@ -107,32 +111,32 @@ async function genImage() {
                   fs.unlinkSync(leftFile);
                   fs.unlinkSync(midFile);
                   fs.unlinkSync(rightFile);
-                  
+
                 })
-                
+
             })
-                      
+
           })
         })
       })
-    
+
   })
   postToTwitter(T);
-  
+
 }
 
-async function downloadFile (url,name){  
+async function downloadFile (url,name){
     const filePath = path.resolve(__dirname,"Files", name)
     const writer = fs.createWriteStream(filePath)
-  
+
     const response = await axios({
       url,
       method: 'GET',
       responseType: 'stream'
     })
-  
+
     response.data.pipe(writer)
-  
+
     return new Promise((resolve, reject) => {
       writer.on('finish', resolve)
       writer.on('error', reject)
@@ -140,7 +144,7 @@ async function downloadFile (url,name){
   }
 
 async function writeNewsToFile(news) {
-  
+
     try {
         if(fs.readFileSync(publicFolder+"\\News.json") != news) {
           fs.writeFile(publicFolder+"\\News.json",news,function(err) {
@@ -151,7 +155,7 @@ async function writeNewsToFile(news) {
         }
     }
     catch(e) {
-       throw e 
+       throw e
     }
   }
 fs.writeFileSync(publicFolder+"\\News.json","LOL")
